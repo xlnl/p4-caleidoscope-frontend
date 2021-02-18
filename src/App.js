@@ -22,7 +22,6 @@ const App = () => {
           <CSSReset />
           <ThemeToggler />
             <Switch>
-              <Route exact path={"/layout"} component={Layout} />
               <Route exact path={"/"} component={Landing} />
               <Route exact path={"/join"} component={Join} />
             </Switch>
