@@ -10,7 +10,9 @@ import "./css/index.css";
 
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+        <div className="container">
+          <App />
+        </div>
     </BrowserRouter>,
   document.getElementById("root")
 );

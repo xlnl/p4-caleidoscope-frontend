@@ -9,3 +9,15 @@ export const login = async ({ username, password }) => {
       }, 3000);
     });
   };
+
+  export const register = async ({ data }) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (data.length) {
+            resolve();
+        } else {
+            reject();
+        }
+      }, 3000);
+    });
+  };
