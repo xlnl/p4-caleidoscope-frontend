@@ -1,10 +1,12 @@
-import React from "react"
+import Login from "./Forms/Login"
+// import SignUp from "./Forms/SignUp"
 
 const Join = () => {
     return (
-        <div>
-            <h1>test</h1>
-        </div>
+        <>
+            <Login />
+            {/* <SignUp /> */}
+        </>
     )
 }
 
