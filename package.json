@@ -2,6 +2,7 @@
   "name": "p4-caleidoscope-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@chakra-ui/icons": "^1.0.5",

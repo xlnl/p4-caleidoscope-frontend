@@ -1,10 +1,11 @@
 import { Switch, Route } from 'react-router-dom' 
 
 // Components
-import ThemeToggler from "./components/common/ThemeToggler"
+import Header from "./components/common/Header"
 import Join from "./components/Join"
 import Landing from "./components/Landing"
-import Layout from "./components/common/Layout"
+import Dashboard from "./components/Dashboard"
+
 
 // CSS imports
 import {
@@ -17,16 +18,17 @@ import "./css/App.css";
 
 const App = () => {
   return (
-      <ThemeProvider theme={theme}>
-        <ColorModeProvider>
-          <CSSReset />
-          <ThemeToggler />
+    <ThemeProvider theme={theme}>
+      <ColorModeProvider>
+        <CSSReset />
+            <Header />
             <Switch>
-              <Route exact path={"/"} component={Landing} />
-              <Route exact path={"/join"} component={Join} />
+                <Route exact path={"/"} component={Landing} />
+                <Route exact path={"/join"} component={Join} />
+                <Route exact path={"/home"} component={Dashboard} />
             </Switch>
-        </ColorModeProvider>
-      </ThemeProvider>
+      </ColorModeProvider>
+    </ThemeProvider>
   );
 }
 

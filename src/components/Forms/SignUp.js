@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import {
-  Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-  CircularProgress,
-  Text,
-  InputGroup,
-  InputRightElement,
-  Icon
-} from '@chakra-ui/core';
-
-import { register } from '../../services/mockApi';
-import ErrorMessage from '../common/ErrorMessage';
 import axios from 'axios';
+import ErrorMessage from '../common/ErrorMessage';
+import { useHistory } from 'react-router-dom'
+
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    Button,
+    CircularProgress,
+    Text,
+    InputGroup,
+    InputRightElement,
+    Icon,
+    Select
+  } from '@chakra-ui/core';
 
 export default function SignUp() {
     // const [data, setData] = useState({
@@ -37,9 +38,9 @@ export default function SignUp() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    // let history = useHistory();
+    let history = useHistory();
     // fix redirect
-    
+
     const handleSubmit = async e => {
         e.preventDefault()
         setIsLoading(true)
@@ -61,7 +62,8 @@ export default function SignUp() {
                 setIsLoading(false)
                 if (data.data.status === 200){
                     setTimeout(() => {
-                        window.location.replace('/')
+                        history.push("/home")
+                        window.location.reload(false)
                     }, 2000)
                 }
             }).catch((err) => {
@@ -168,13 +170,16 @@ export default function SignUp() {
                     />
                     </FormControl>
                     <FormControl isRequired>
-                    <FormLabel>Zodiac Sign</FormLabel>
-                    <Input
-                        type="zodiacSign"
-                        placeholder="scorpio"
-                        size="lg"
-                        onChange={e => setZodiacSign(e.target.value)}
-                    />
+                        <FormLabel>Zodiac Sign</FormLabel>
+                        <Select 
+                            id='zodiacSign'
+                            type="zodiacSign"
+                            placeholder="Select Zodiac Sign"
+                            size="lg"
+                            onChange={e => setZodiacSign(e.target.value)}
+                        > 
+                            <option value="Scorpio">Scorpio</option>
+                        </Select>
                     </FormControl>
                     <Button
                     variantColor="teal"
