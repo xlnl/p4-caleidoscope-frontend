@@ -6,13 +6,24 @@ import { BrowserRouter } from 'react-router-dom';
 import App from "./App";
 
 // CSS imports
-import "./css/index.css";
+import {
+  ThemeProvider,
+  theme,
+  CSSReset,
+  ColorModeProvider
+} from '@chakra-ui/core'
+
 
 ReactDOM.render(
-    <BrowserRouter>
-        <div className="container">
-          <App />
-        </div>
-    </BrowserRouter>,
+  <ThemeProvider theme={theme}>
+    <ColorModeProvider>  
+      <CSSReset />
+        <BrowserRouter>
+            <div>
+              <App />
+            </div>
+        </BrowserRouter>
+    </ColorModeProvider>  
+  </ThemeProvider>, 
   document.getElementById("root")
 );

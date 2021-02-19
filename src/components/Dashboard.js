@@ -1,7 +1,8 @@
 import React,{ useState, useEffect } from 'react'
-// import {
-//     Box
-// } from '@chakra-ui/core';
+import {
+    Flex,
+    Box
+} from '@chakra-ui/core';
 
 import Notes from './Notes/Notes'
 import NoteForm from './Forms/NoteForm'
@@ -37,10 +38,19 @@ const Dashboard = () => {
     }
         
 return (
-    <div>
-        <Notes notes={notes} />
-        <NoteForm noteId={noteId} setNote={setNote} user={user}/>
-    </div>
+    <Flex align="center" justifyContent="center">
+        <Box
+            p={8}
+            maxWidth="full"
+            borderWidth={1}
+            borderRadius={8}
+            boxShadow="lg"
+            align="center"
+        >
+            <Notes notes={notes} />
+            <NoteForm noteId={noteId} setNote={setNote} user={user}/>
+        </Box>
+    </Flex>
 );
 };
 

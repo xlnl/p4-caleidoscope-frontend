@@ -15,7 +15,7 @@ import {
     InputGroup,
     InputRightElement,
     Icon
-  } from '@chakra-ui/core';
+} from '@chakra-ui/core';
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -69,11 +69,11 @@ export default function Login() {
             <Box textAlign="center">
                 <Text>{username} logged in!</Text>
                 <Button
-                variantColor="purple"
-                variant="outline"
-                width="full"
-                mt={4}
-                onClick={() => setIsLoggedIn(false)}
+                    variantColor="purple"
+                    variant="outline"
+                    width="full"
+                    mt={4}
+                    onClick={() => setIsLoggedIn(false)}
                 >
                 Log Out
                 </Button>

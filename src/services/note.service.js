@@ -10,11 +10,13 @@ export const createNote = (block, person_id) => {
         person_id
     }, { withCredentials: true });
 }
-export const updatePost = (noteId, updatedNote) => axios.put(url + `${noteId}`, updatedNote, { withCredentials: true });
-export const deletePost = (noteId) => {
-    return axios({
-        method: 'DELETE',
-        url: url + `${noteId}`
-    },
-    { withCredentials: true })
-}
+export const updateNote = (noteId, updatedNote) => axios.put(url + `${noteId}`, updatedNote, { withCredentials: true });
+export const deleteNote = (noteId) => axios.delete(url + `${noteId}`, { withCredentials: true })
+
+// export const deletePost = (noteId) => {
+//     return axios({
+//         method: 'DELETE',
+//         url: url + `${noteId}`
+//     },
+//     { withCredentials: true })
+// }
