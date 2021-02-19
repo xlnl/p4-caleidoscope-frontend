@@ -3,7 +3,6 @@ import axios from 'axios'
 import {
   Flex,
   Box,
-  Heading,
   FormControl,
   FormLabel,
   Input,
@@ -24,13 +23,13 @@ import { useHistory } from 'react-router-dom'
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState('')
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLoading, setIsLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-    let history = useHistory();
-
+   
+    // let history = useHistory();
+    // fix redirect
     const handleSubmit = async e => {
         e.preventDefault()
         setIsLoading(true)
@@ -40,19 +39,19 @@ export default function Login() {
             {
                 username: username, 
                 password: password
-            }
+            },
+            { withCredentials: true }
         ).then((data)=>{
             console.log(data)
             setIsLoggedIn(true)
             setIsLoading(false)
-            setShowPassword(false)
             if (data.data.status === 200){
                 setTimeout(() => {
-                    history.push("/")
-                    window.location.reload(false)
+                    window.location.replace('/')
                 }, 2000)
             }
         }).catch((err) => {
+            setShowPassword(false)
             setError('Invalid username or password');
             setIsLoading(false)
             setUsername('')
@@ -76,13 +75,13 @@ export default function Login() {
             <Box textAlign="center">
                 <Text>{username} logged in!</Text>
                 <Button
-                variantColor="orange"
+                variantColor="purple"
                 variant="outline"
                 width="full"
                 mt={4}
                 onClick={() => setIsLoggedIn(false)}
                 >
-                Sign out
+                Log Out
                 </Button>
             </Box>
             ) : (

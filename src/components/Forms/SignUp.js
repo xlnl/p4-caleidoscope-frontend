@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Flex,
   Box,
-  Heading,
   FormControl,
   FormLabel,
   Input,
@@ -16,38 +15,67 @@ import {
 
 import { register } from '../../services/mockApi';
 import ErrorMessage from '../common/ErrorMessage';
+import axios from 'axios';
 
 export default function SignUp() {
-    const [data, setData] = useState({
-        username: "",
-        password: "",
-        email: "",
-        city: "",
-        country: "",
-        zodiacSign: ""
-    });
-
+    // const [data, setData] = useState({
+    //     username: "",
+    //     password: "",
+    //     email: "",
+    //     city: "",
+    //     country: "",
+    //     zodiacSign: ""
+    // });
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [city, setCity] = useState('')
+    const [country, setCountry] = useState('')
+    const [zodiacSign, setZodiacSign] = useState('')
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
+    // let history = useHistory();
+    // fix redirect
+    
     const handleSubmit = async e => {
-        e.preventDefault();
+        e.preventDefault()
+        setIsLoading(true)
 
-        setIsLoading(true);
-        // refactor latest for dryer code - map it all to data object; handle better action logic
-        try {
-        await register({ data });
-        setIsLoggedIn(true);
-        setIsLoading(false);
-        setShowPassword(false);
-        } catch (error) {
-        setError('Invalid username or password');
-        setIsLoading(false);
-        setData('');
-        setShowPassword(false);
-        }
+        await axios.post(
+            `${process.env.REACT_APP_CAL_API_URL}` + `/api/v1/user/register`,
+            {
+                username: username, 
+                password: password,
+                email: email,
+                city: city, 
+                country: country,
+                zodiacSign: zodiacSign
+            },
+            { withCredentials: true }
+            ).then((data)=>{
+                console.log(data)
+                setIsLoggedIn(true)
+                setIsLoading(false)
+                if (data.data.status === 200){
+                    setTimeout(() => {
+                        window.location.replace('/')
+                    }, 2000)
+                }
+            }).catch((err) => {
+            setShowPassword(false)
+            setError('Invalid username or password');
+            setIsLoading(false)
+            setUsername('') 
+            setPassword('')
+            setEmail('')
+            setCity('')
+            setCountry('')
+            setZodiacSign('')
+            setShowPassword(false);
+        })
     };
 
     const handlePasswordVisibility = () => setShowPassword(!showPassword);
@@ -63,7 +91,7 @@ export default function SignUp() {
         >
             {isLoggedIn ? (
             <Box textAlign="center">
-                <Text>{data.username} logged in!</Text>
+                <Text>{username} logged in!</Text>
                 <Button
                 variantColor="orange"
                 variant="outline"
@@ -85,8 +113,7 @@ export default function SignUp() {
                         type="username"
                         placeholder="tester"
                         size="lg"
-                        onChange={e => setData({ 
-                            ...data, username: e.target.value})}
+                        onChange={e => setUsername(e.target.value)}
                     />
                     </FormControl>
                     <FormControl isRequired>
@@ -95,8 +122,7 @@ export default function SignUp() {
                         type="email"
                         placeholder="tester@email.com"
                         size="lg"
-                        onChange={e => setData({ 
-                            ...data, email: e.target.value})}
+                        onChange={e => setEmail(e.target.value)}
                     />
                     </FormControl>
                     <FormControl isRequired mt={6}>
@@ -106,8 +132,7 @@ export default function SignUp() {
                         type={showPassword ? 'text' : 'password'}
                         placeholder="*******"
                         size="lg"
-                        onChange={e => setData({ 
-                            ...data, password: e.target.value})}
+                        onChange={e => setPassword(e.target.value)}
                         />
                         <InputRightElement width="3rem">
                         <Button
@@ -130,8 +155,7 @@ export default function SignUp() {
                         type="city"
                         placeholder="Washington"
                         size="lg"
-                        onChange={e => setData({ 
-                            ...data, city: e.target.value})}
+                        onChange={e => setCity(e.target.value)}
                     />
                     </FormControl>
                     <FormControl isRequired>
@@ -140,8 +164,7 @@ export default function SignUp() {
                         type="country"
                         placeholder="United States"
                         size="lg"
-                        onChange={e => setData({ 
-                            ...data, country: e.target.value})}
+                        onChange={e => setCountry(e.target.value)}
                     />
                     </FormControl>
                     <FormControl isRequired>
@@ -150,8 +173,7 @@ export default function SignUp() {
                         type="zodiacSign"
                         placeholder="scorpio"
                         size="lg"
-                        onChange={e => setData({ 
-                            ...data, zodiacSign: e.target.value})}
+                        onChange={e => setZodiacSign(e.target.value)}
                     />
                     </FormControl>
                     <Button
