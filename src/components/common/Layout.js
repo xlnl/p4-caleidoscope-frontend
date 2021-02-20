@@ -8,6 +8,7 @@ import {
     IconButton, 
     Button
 } from "@chakra-ui/core";  
+import { Spacer } from "@chakra-ui/react"
 
 import { logout, currentUser } from "../../services/user.service"
 
@@ -58,17 +59,21 @@ const Layout = props => {
                         </Link>
                     </Flex>
                     <Box  
-                    display="flex"  
-                    width="auto"  
-                    alignItems="center"  
-                    flexGrow={1}  
-                    color={colorMode === "light" ? "purple.300" : "white"}
+                        display="flex"  
+                        width="auto"  
+                        alignItems="center"  
+                        flexGrow={1}  
+                        color={colorMode === "light" ? "purple.300" : "white"}
                     >  
                         <Link to="/home">Home</Link>  
                     </Box>
+                    <Box>
+                        <Spacer />
+                    </Box>
                     <Box
-                    display="block"  
-                    mt={{ base: 4, md: 0 }}  
+                        display="block"  
+                        align="right"
+                        mt={{ base: 4, md: 0 }}  
                     >  
                         <IconButton  
                             bg="transparent"  

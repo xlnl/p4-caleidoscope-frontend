@@ -1,72 +1,41 @@
 # Project Four - Caleidoscope - Frontend
+### [Backend Repo](https://github.com/xlnl/p4-caleidoscope-backend)
+### [Deployed App]() - TBD
+## Frontend Tech Used
+* Notion & Github - for project management 
+* Figma & LucidCharts - for wireframes & ORM planning
+* React.js - for JS library
+* Chakra-UI - for styling and general UI
+* fullCalendar - for calendar plug-in
+* APIs - Aztro (horoscope) + OpenWeatherMap (weather)
 
-## Getting Started with Create React App
+## General Approach
+The name "Caleidoscope" is a marriage of calendar and kaleidoscope, indicating the prisms of life events that we seem to be inundated with as time goes on. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The purpose of this project was to predict, plan, and organize for a streamlined personal management system. 
 
-## Available Scripts
+## Wireframes
+### Click [here](https://whimsical.com/ErfvTGujAf8JiZKRvthgW6) for wireframes.
 
-In the project directory, you can run:
+## User Stories
+### MVP
+As a user, I want to be able to: 
+* see a landing page before I log in/sign up so I can know more about the app.
+* sign up, log in, and/or log out of the app
+* access a dashboard to see the current weather in my area, horoscope reading based on my astrological sign, full monthly calendar, my notes, and a place to take notes
+* create, read, update, and delete a note on my dashboard
+### STRETCH
+As a user, I want to be able to: 
+* create, read, update, and delete an event on my calendar
+* seamlessly create notes without having to click save
+* hide my horoscope and weather app 
+* update my location or astrological sign to see queried data
 
-### `npm start`
+## Installation Instructions
+To get the app up and running, please do the following: 
+> npm i
+>
+> npm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Major Hurdles & Unsolved Problems 
+As expected, state management is still a muscle I have to flex and get used to. I'm planning on adding more to this to ensure API calls are properly places and sucessful based on currentUser. 

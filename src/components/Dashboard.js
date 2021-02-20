@@ -5,14 +5,17 @@ import {
     Box,
     Text, 
     Heading,
-    Stack
+    Stack,
 } from '@chakra-ui/core';
+
+import { HStack } from '@chakra-ui/react'
 
 // import Weather from './common/Weather'
 import Horoscope from './Horoscope'
 import Notes from './Notes/Notes'
 import NoteForm from './Forms/NoteForm'
 import EditForm from './Forms/EditForm';
+import Schedule from './Schedule'
 
 import { findAll } from '../services/note.service';
 import { currentUser } from '../services/user.service'
@@ -44,6 +47,7 @@ const Dashboard = () => {
         currentUser()
         .then(res => {
             let cityData = capitalize(res.data.data[0].city)
+            console.log(cityData)
             setUsername(res.data.data[0].username)
             setCity(cityData)
             setZodiacSign(res.data.data[0].zodiacSign)
@@ -59,9 +63,14 @@ const Dashboard = () => {
         })
     }, [])
 
+    useEffect(()=>{
+        setTimeout((city) => {
+            getWeather(city)
+        }, 2000)
+    },[])
 
-    const getWeather = () => {
-        axios.get(`${api.base}forecast?q=washington&units=imperial&appid=${api.key}`)
+    const getWeather = async () => {
+        await axios.get(`${api.base}forecast?q=washington&units=imperial&appid=${api.key}`)
             .then(res => {
                 console.log(res.data);
                 let weatherAPI = res.data.list[0]
@@ -76,9 +85,6 @@ const Dashboard = () => {
             });
     }
     
-    useEffect(()=>{
-        getWeather()
-    },[])
 
     const setNote = (id) => {
         setNoteId(id)
@@ -90,7 +96,6 @@ const Dashboard = () => {
                 <Stack>
                     <Box
                         p={8}
-                        w="500px"
                         borderWidth={1}
                         borderRadius={8}
                         boxShadow="lg"
@@ -99,32 +104,40 @@ const Dashboard = () => {
                     >
                         <Heading as="h3" size="md">Welcome, {username}</Heading>
                     </Box>
-                    <Box
-                        p={8}
-                        w="500px"
-                        borderWidth={1}
-                        borderRadius={8}
-                        boxShadow="lg"
-                        bg="gray.300"
-                        opacity="0.90"
-                    >
-                        <Heading as="h3" size="md">Weather Data</Heading>
-                        <Text> It is currently {temp} ℉ in {city}, {country}</Text>
+                    <HStack p={2}>
+                        <HStack>
+                            <Box
+                                p={8}
+                                h="305px"
+                                borderWidth={1}
+                                borderRadius={8}
+                                boxShadow="lg"
+                                bg="gray.300"
+                                opacity="0.90"
+                            >
+                                <Heading as="h3" size="md">Weather Data</Heading>
+                                <Text> It is currently {temp} ℉ in {city}, {country}</Text>
+                            </Box>
+                        </HStack>
+                        <HStack>
+                            <Box
+                                p={8}
+                                w="500px"
+                                borderWidth={1}
+                                borderRadius={8}
+                                boxShadow="lg"
+                                bg="gray.300"
+                                opacity="0.90"
+                            >
+                                <Horoscope />
+                            </Box>
+                        </HStack>
+                    </HStack>
+                    <Box>
+                        <Schedule />
                     </Box>
                     <Box
                         p={8}
-                        w="500px"
-                        borderWidth={1}
-                        borderRadius={8}
-                        boxShadow="lg"
-                        bg="gray.300"
-                        opacity="0.90"
-                    >
-                    <Horoscope />
-                    </Box>
-                    <Box
-                        p={8}
-                        w="500px"
                         borderWidth={1}
                         borderRadius={8}
                         boxShadow="lg"

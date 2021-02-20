@@ -86,7 +86,7 @@ export default function SignUp() {
         <Flex width="full" align="center" justifyContent="center">
         <Box
             p={8}
-            maxWidth="500px"
+            w="400px"
             borderWidth={1}
             borderRadius={8}
             boxShadow="lg"

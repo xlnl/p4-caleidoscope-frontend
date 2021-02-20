@@ -15,7 +15,7 @@ import SignUp from "./Forms/SignUp"
 const Join = () => {
     return (
         <Flex direction='column' align='center' justify='center'>
-            <Box align='center'  w="350px" p={4} boxShadow="sm" rounded="lg">
+            <Box align='center'  w="500px" p={4} boxShadow="sm" rounded="lg">
                 <Image src="./security.png" w="100px" mx="auto" my={4}/>
                 <Tabs variant="enclosed-colored" m={4} isFitted>
                     <TabList>
