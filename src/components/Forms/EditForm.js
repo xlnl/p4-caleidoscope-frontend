@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import {
     Box,
@@ -7,28 +7,37 @@ import {
     Button
 } from '@chakra-ui/core';
 
-import { createNote } from '../../services/note.service';
+import { updateNote } from '../../services/note.service';
 
-export default function NoteForm(props) {
-    const [block, setBlock] = useState('')
+export default function EditForm(props) {
+    const [block, setBlock] = useState("")
+    const person_id = props.userId
     let history = useHistory();
 
+    useEffect(() => {
+        setBlock(props.note)
+    }, [])
+
+    const onChangeNote = (e) => {
+        console.log(props.note.id, block)
+        setBlock(e.target.value)
+    }
 
     const handleSubmit = async e => {
         e.preventDefault()
 
         console.log("before service", block)
 
-        createNote(block)
-        .then(createdBlock => {
-            console.log("createdBlock!!", createdBlock.data.data)
-            setBlock(createdBlock.data.data)
+        updateNote(block, person_id)
+        .then(updatedBlock => {
+            console.log("updatedBlock!!", updatedBlock.data.data)
+            setBlock(updatedBlock.data.data)
             setTimeout(() => {
                 history.push("/home")
                 window.location.reload(false)
             }, 2000)
         }).catch((err) => {
-            console.log("error making note", err)
+            console.log("error updated note", err)
         })
 
     };
@@ -40,8 +49,8 @@ export default function NoteForm(props) {
             <FormControl>
                 <Input 
                     type="block"
-                    placeholder="Write a note"
-                    onChange={e => setBlock(e.target.value)}
+                    placeholder="Edit a note"
+                    onChange={onChangeNote}
                 />
             </FormControl>
             <Button
@@ -51,7 +60,7 @@ export default function NoteForm(props) {
                     width="full"
                     mt={4}
                     >
-                    ENTER
+                    UPDATE
             </Button>
             </form>
             </Box>

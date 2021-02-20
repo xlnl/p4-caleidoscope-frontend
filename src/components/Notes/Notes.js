@@ -4,19 +4,22 @@ import { Grid, Box } from '@chakra-ui/core';
 import Note from '../Notes/Note/Note'
 
 
-const Notes = ({ notes }) => {
+const Notes = ({ notes, setCurrentId }) => {
 
     const notesData = notes
 
     return (
         <Box>
-            <Grid>
+            <Box>
                 {notesData.map((note) => (
-                <Grid key={note.id}>
-                    <Note note={note} />
-                </Grid>
+                <Box 
+                    key={note.id}
+                    p={1}
+                >
+                    <Note note={note} setCurrentId={setCurrentId} />
+                </Box>
                 ))}
-            </Grid>
+            </Box>
         </Box>
     )
 };

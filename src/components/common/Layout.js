@@ -51,7 +51,7 @@ const Layout = props => {
             >  
                 <Flex align="center" mr={5}>
                     <Link to="/">
-                    <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>  
+                    <Heading as="h1" size="lg" letterSpacing={"-.1rem"} spaceBetween={1}>  
                         CALEIDOSCOPE
                     </Heading>  
                     </Link>
