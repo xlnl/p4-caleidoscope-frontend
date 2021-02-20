@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ErrorMessage from '../common/ErrorMessage';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 import {
     Flex,
@@ -15,7 +15,7 @@ import {
     InputGroup,
     InputRightElement,
     Icon,
-    Select
+    Select,
   } from '@chakra-ui/core';
 
 export default function SignUp() {
@@ -94,15 +94,16 @@ export default function SignUp() {
             {isLoggedIn ? (
             <Box textAlign="center">
                 <Text>{username} logged in!</Text>
-                <Button
-                variantColor="orange"
-                variant="outline"
-                width="full"
-                mt={4}
-                onClick={() => setIsLoggedIn(false)}
-                >
-                Log Out
-                </Button>
+                <Link to='/home'>
+                    <Button
+                    variantColor="orange"
+                    variant="outline"
+                    width="full"
+                    mt={4}
+                    >
+                    Home
+                    </Button>
+                </Link>
             </Box>
             ) : (
             <>
@@ -178,6 +179,16 @@ export default function SignUp() {
                             size="lg"
                             onChange={e => setZodiacSign(e.target.value)}
                         > 
+                            <option value="Capricorn">Capricorn</option>
+                            <option value="Aquarius">Aquarius</option>
+                            <option value="Pisces">Pisces</option>
+                            <option value="Aries">Aries</option>
+                            <option value="Taurus">Taurus</option>
+                            <option value="Gemini">Gemini</option>
+                            <option value="Cancer">Cancer</option>
+                            <option value="Leo">Leo</option>
+                            <option value="Virgo">Virgo</option>
+                            <option value="Libra">Libra</option>
                             <option value="Scorpio">Scorpio</option>
                         </Select>
                     </FormControl>

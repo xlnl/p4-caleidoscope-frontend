@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
 import ErrorMessage from '../common/ErrorMessage';
 import { useHistory } from 'react-router-dom'
@@ -10,11 +10,11 @@ import {
     FormLabel,
     Input,
     Button,
-  //   CircularProgress,
     Text,
     InputGroup,
     InputRightElement,
-    Icon
+    Icon, 
+    Link
 } from '@chakra-ui/core';
 
 export default function Login() {
@@ -73,9 +73,8 @@ export default function Login() {
                     variant="outline"
                     width="full"
                     mt={4}
-                    onClick={() => setIsLoggedIn(false)}
                 >
-                Log Out
+                <Link to="/home">Home</Link>
                 </Button>
             </Box>
             ) : (

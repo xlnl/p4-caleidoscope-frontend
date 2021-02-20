@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     Box, 
     Text
@@ -12,15 +13,13 @@ export default function Weather(props) {
     const city = capitalize(props.city)
     const country = props.country
     const weatherData = props.weather
-    const temp = weatherData.main.temp
 
     console.log("all weather data here", weatherData)
-    console.log(temp)
 
     return (
         <Box>
             <Text> Forecast for {city}, {country}: </Text>
-            <Text> {temp} ℉</Text>
+            {/* <Text> {temp} ℉</Text> */}
         </Box>
     )
 }

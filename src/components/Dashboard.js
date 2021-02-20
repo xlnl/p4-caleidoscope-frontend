@@ -4,10 +4,12 @@ import {
     Flex,
     Box,
     Text, 
-    Heading
+    Heading,
+    Stack
 } from '@chakra-ui/core';
 
-import Weather from './common/Weather'
+// import Weather from './common/Weather'
+import Horoscope from './Horoscope'
 import Notes from './Notes/Notes'
 import NoteForm from './Forms/NoteForm'
 import EditForm from './Forms/EditForm';
@@ -20,6 +22,11 @@ const api = {
     key: "813d16a5ee3735ec9bd8ea5f6718b9b5",
     base: "https://api.openweathermap.org/data/2.5/"
 }
+
+function capitalize(str) {
+    const lower = str.toLowerCase()
+    return str.charAt(0).toUpperCase() + lower.slice(1)
+}
   
 const Dashboard = () => {
     const [user, setUser] = useState('')
@@ -30,14 +37,15 @@ const Dashboard = () => {
     const [notes, setNotes] = useState([])
     // const [horoscope, setHoroscope] = useState('')
     const [weather, setWeather] = useState('')
+    const [temp, setTemp] = useState('')
     const [noteId, setNoteId] = useState(null)
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         currentUser()
         .then(res => {
+            let cityData = capitalize(res.data.data[0].city)
             setUsername(res.data.data[0].username)
-            setCity(res.data.data[0].city)
+            setCity(cityData)
             setZodiacSign(res.data.data[0].zodiacSign)
             setUser(res.data.data[0].id)
         })
@@ -46,18 +54,20 @@ const Dashboard = () => {
     useEffect(() => {
         findAll()
         .then(res => {
-            setNotes(res.data.data)
-            console.log(res.data.data)
+            let foundNotes = res.data.data.reverse()
+            setNotes(foundNotes)
         })
     }, [])
 
 
-    const getWeather =  () => {
+    const getWeather = () => {
         axios.get(`${api.base}forecast?q=washington&units=imperial&appid=${api.key}`)
             .then(res => {
                 console.log(res.data);
                 let weatherAPI = res.data.list[0]
                 let countryCode = res.data.city.country
+                let temp = res.data.list[0].main.temp
+                setTemp(temp)
                 setWeather(weatherAPI)
                 setCountry(countryCode);
             })
@@ -65,11 +75,10 @@ const Dashboard = () => {
                 console.log("erroring reaching weather api!!!!", err)
             });
     }
-
+    
     useEffect(()=>{
         getWeather()
-    }, [])
-    
+    },[])
 
     const setNote = (id) => {
         setNoteId(id)
@@ -77,31 +86,55 @@ const Dashboard = () => {
         
     return (
         <Box>
-            <Heading as="h3" size="md">Welcome, {username}</Heading>
             <Flex align="center" justifyContent="center" padding="1rem">
-                <Box
-                    p={8}
-                    w="500px"
-                    borderWidth={1}
-                    borderRadius={8}
-                    boxShadow="lg"
-                    bg="white"
-                >
-                    <Text>Weather Data</Text>
-                    <Weather weather={weather} city={city} country={country}/>
-                </Box>
-
-                <Box
-                    p={8}
-                    w="500px"
-                    borderWidth={1}
-                    borderRadius={8}
-                    boxShadow="lg"
-                >
-                    <NoteForm noteId={noteId} setNote={setNote} setUser={user}/>
-                    <Notes notes={notes} />
-                    <EditForm setNote={setNote} setUser={user}/>
-                </Box>
+                <Stack>
+                    <Box
+                        p={8}
+                        w="500px"
+                        borderWidth={1}
+                        borderRadius={8}
+                        boxShadow="lg"
+                        bg="gray.300"
+                        opacity="0.90"
+                    >
+                        <Heading as="h3" size="md">Welcome, {username}</Heading>
+                    </Box>
+                    <Box
+                        p={8}
+                        w="500px"
+                        borderWidth={1}
+                        borderRadius={8}
+                        boxShadow="lg"
+                        bg="gray.300"
+                        opacity="0.90"
+                    >
+                        <Heading as="h3" size="md">Weather Data</Heading>
+                        <Text> It is currently {temp} ℉ in {city}, {country}</Text>
+                    </Box>
+                    <Box
+                        p={8}
+                        w="500px"
+                        borderWidth={1}
+                        borderRadius={8}
+                        boxShadow="lg"
+                        bg="gray.300"
+                        opacity="0.90"
+                    >
+                    <Horoscope />
+                    </Box>
+                    <Box
+                        p={8}
+                        w="500px"
+                        borderWidth={1}
+                        borderRadius={8}
+                        boxShadow="lg"
+                        bg="gray.300"
+                        opacity="0.90"
+                    >
+                        <NoteForm noteId={noteId} setNote={setNote} user={user}/>
+                        <Notes notes={notes} setNoteId={setNoteId}/>
+                    </Box>
+                </Stack>
             </Flex>
         </Box>
     );

@@ -15,8 +15,8 @@ import {
 // landing page for more info about Caleidoscope
 const Landing = () => {
     return (
-        <div className={"body"}>
-            <Flex width="full" align="center" justifyContent="center">
+        <div className={"landing-page"}>
+            <Flex width="full" align="center" justifyContent="center" className={"landing-container"}>
                 <Box
                     p={10}
                     maxWidth="600px"

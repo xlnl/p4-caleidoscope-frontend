@@ -11,15 +11,15 @@ import { createNote } from '../../services/note.service';
 
 export default function NoteForm(props) {
     const [block, setBlock] = useState('')
+    const person_id = props.user
     let history = useHistory();
-
 
     const handleSubmit = async e => {
         e.preventDefault()
 
         console.log("before service", block)
 
-        createNote(block)
+        createNote(block, person_id)
         .then(createdBlock => {
             console.log("createdBlock!!", createdBlock.data.data)
             setBlock(createdBlock.data.data)

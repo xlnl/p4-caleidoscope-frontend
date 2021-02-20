@@ -1,15 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
-
+import { Spacer } from '@chakra-ui/react'
 import { 
     Box, 
     Button,
- } from '@chakra-ui/core';
+    Text,
+    Flex,
+} from '@chakra-ui/core';
+
 
 import { deleteNote } from "../../../services/note.service"
+// import EditForm from '../../Forms/EditForm';
 
-const Note = (props) => {
-    const noteId = props.noteId
+const Note = ({ note, setNoteId }) => {
+    const noteId = note.id
     let history = useHistory();
 
     const deleteNoteHandler = () => {
@@ -20,10 +24,9 @@ const Note = (props) => {
         }, 1000)
     }
 
-    const updateNoteHandler = () => {
-        history.push("/home")
-        window.location.reload(false)
-    }
+    // const updateNoteHandler = (id) => {
+    //     EditForm(id)
+    // }
 
     // refactor to work with colormode 
     return (
@@ -34,19 +37,27 @@ const Note = (props) => {
             p={2} 
             color={"gray"}
             borderRadius={3}
-            >
-        {props.note.block}
-        <Button 
-            textAlign="center"
-            bg="transparent"
-            onClick={updateNoteHandler}
-        >...</Button>
-        <Button 
-            textAlign="center"
-            bg="transparent"
-            onClick={deleteNoteHandler}
-        >x</Button>
+        >
+            <Flex>
+                <Box align="center">
+                    <Text align="center">{note.block}</Text>
+                </Box>
+                <Spacer />
+                <Box>
+                    <Button 
+                        textAlign="center"
+                        bg="transparent"
+                        onClick={() => setNoteId(noteId)}
+                    >...</Button>
+                    <Button 
+                        textAlign="center"
+                        bg="transparent"
+                        onClick={deleteNoteHandler}
+                    >x</Button>
+                </Box>
+            </Flex>
         </Box>
+
     );
 };
 

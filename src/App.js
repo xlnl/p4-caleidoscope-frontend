@@ -8,6 +8,7 @@ import Join from "./components/Join"
 import Landing from "./components/Landing"
 import Dashboard from "./components/Dashboard"
 import EditForm from "./components/Forms/EditForm"
+import Horoscope from "./components/Horoscope"
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
               <Route exact path={"/join"} component={Join} />
               <Route exact path={"/home"} component={Dashboard} />
               <Route exact path={"/editNote"} component={EditForm} />
+              <Route exact path={"/horoscope"} component={Horoscope} />
           </Switch>
         </Layout>
       </>

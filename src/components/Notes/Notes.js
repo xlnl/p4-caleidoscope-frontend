@@ -1,10 +1,10 @@
 import React from 'react';
-import { Grid, Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/core';
 
 import Note from '../Notes/Note/Note'
 
 
-const Notes = ({ notes, setCurrentId }) => {
+const Notes = ({ notes, setNoteId }) => {
 
     const notesData = notes
 
@@ -16,7 +16,7 @@ const Notes = ({ notes, setCurrentId }) => {
                     key={note.id}
                     p={1}
                 >
-                    <Note note={note} setCurrentId={setCurrentId} />
+                    <Note note={note} setNoteId={setNoteId} />
                 </Box>
                 ))}
             </Box>

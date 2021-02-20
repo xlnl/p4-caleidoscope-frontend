@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom'
 import {
     Box,
@@ -11,8 +11,10 @@ import { updateNote } from '../../services/note.service';
 
 export default function EditForm(props) {
     const [block, setBlock] = useState("")
-    const person_id = props.userId
+    const person_id = props.user
+
     let history = useHistory();
+    const form = useRef()
 
     useEffect(() => {
         setBlock(props.note)
@@ -25,10 +27,9 @@ export default function EditForm(props) {
 
     const handleSubmit = async e => {
         e.preventDefault()
-
         console.log("before service", block)
-
-        updateNote(block, person_id)
+        let noteId = props.noteId
+        updateNote(noteId, block, person_id)
         .then(updatedBlock => {
             console.log("updatedBlock!!", updatedBlock.data.data)
             setBlock(updatedBlock.data.data)
@@ -46,22 +47,22 @@ export default function EditForm(props) {
         <>
             <Box textAlign="left">
             <form onSubmit={handleSubmit}>
-            <FormControl>
-                <Input 
-                    type="block"
-                    placeholder="Edit a note"
-                    onChange={onChangeNote}
-                />
-            </FormControl>
-            <Button
-                    variantColor="yellow"
-                    variant="outline"
-                    type="submit"
-                    width="full"
-                    mt={4}
-                    >
-                    UPDATE
-            </Button>
+                <FormControl>
+                    <Input 
+                        type="block"
+                        placeholder="Edit a note"
+                        onChange={onChangeNote}
+                    />
+                </FormControl>
+                <Button
+                        variantColor="yellow"
+                        variant="outline"
+                        type="submit"
+                        width="full"
+                        mt={4}
+                        >
+                        UPDATE
+                </Button>
             </form>
             </Box>
         </>
