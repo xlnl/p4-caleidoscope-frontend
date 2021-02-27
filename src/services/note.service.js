@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = `${process.env.REACT_APP_CAL_API_URL}` + `/api/v1/note/`
+const url = `${process.env.REACT_APP_BACKEND_URL}` + `/api/v1/note/`
 
 export const findAll = () => axios.get(url, { withCredentials: true });
 export const findOne = (noteId) => axios.get(url + `${noteId}`, { withCredentials: true });

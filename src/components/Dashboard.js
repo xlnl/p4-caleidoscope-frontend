@@ -7,7 +7,6 @@ import {
     Heading,
     Stack,
 } from '@chakra-ui/core';
-
 import { HStack } from '@chakra-ui/react'
 
 // import Weather from './common/Weather'
@@ -40,6 +39,7 @@ const Dashboard = () => {
     const [notes, setNotes] = useState([])
     // const [horoscope, setHoroscope] = useState('')
     const [weather, setWeather] = useState('')
+    const [feelsLike, setFeelsLike] = useState('')
     const [temp, setTemp] = useState('')
     const [noteId, setNoteId] = useState(null)
 
@@ -76,6 +76,8 @@ const Dashboard = () => {
                 let weatherAPI = res.data.list[0]
                 let countryCode = res.data.city.country
                 let temp = res.data.list[0].main.temp
+                let feelsLike = res.data.list[0].main.feels_like
+                setFeelsLike(feelsLike)
                 setTemp(temp)
                 setWeather(weatherAPI)
                 setCountry(countryCode);
@@ -84,7 +86,6 @@ const Dashboard = () => {
                 console.log("erroring reaching weather api!!!!", err)
             });
     }
-    
 
     const setNote = (id) => {
         setNoteId(id)
@@ -117,6 +118,7 @@ const Dashboard = () => {
                             >
                                 <Heading as="h3" size="md">Weather Data</Heading>
                                 <Text> It is currently {temp} ℉ in {city}, {country}</Text>
+                                <Text> Feels like {feelsLike} ℉ though.</Text>
                             </Box>
                         </HStack>
                         <HStack>

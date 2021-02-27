@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios'
 import ErrorMessage from '../common/ErrorMessage';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 import {
     Flex,
@@ -14,7 +14,6 @@ import {
     InputGroup,
     InputRightElement,
     Icon, 
-    Link
 } from '@chakra-ui/core';
 
 export default function Login() {
@@ -122,7 +121,7 @@ export default function Login() {
                     width="full"
                     mt={4}
                     >
-                    'ENTER'
+                    ENTER
                     </Button>
                 </form>
                 </Box>
