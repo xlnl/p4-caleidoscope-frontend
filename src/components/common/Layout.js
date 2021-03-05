@@ -14,7 +14,7 @@ import { logout, currentUser } from "../../services/user.service"
 
 const Layout = props => {  
     const { colorMode, toggleColorMode } = useColorMode();
-    const [isLoggedIn, setIsLoggedIn] = useState()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const history = useHistory()
 
@@ -23,9 +23,8 @@ const Layout = props => {
           .then(res => {
               if(res.data.status.code === 200) {
                 setIsLoggedIn(res.data.data)
-                console.log(res.data.data)
               }
-              else setIsLoggedIn(undefined)
+              else setIsLoggedIn(false)
           }, err => {
             console.log(err)
           })

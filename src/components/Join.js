@@ -24,10 +24,10 @@ const Join = () => {
                     </TabList>     
                     <TabPanels p={3}>
                         <TabPanel>
-                            <SignUp/>
+                            <SignUp />
                         </TabPanel>
                         <TabPanel>
-                            <Login/>
+                            <Login />
                         </TabPanel>
                     </TabPanels>       
                 </Tabs>

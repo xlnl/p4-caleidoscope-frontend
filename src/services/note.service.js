@@ -11,7 +11,7 @@ export const createNote = (block, person_id) => {
     }, { withCredentials: true });
 }
 export const updateNote = (noteId, block, person_id) => {
-    return axios.put(url + `${noteId}`, {
+    return axios.put(url + `${noteId}/update`, {
         block,
         person_id
     }, { withCredentials: true });
