@@ -29,7 +29,7 @@ export default function Login() {
         e.preventDefault()
 
         await axios.post(
-            `${process.env.REACT_APP_CAL_API_URL}` + `/api/v1/user/login`,
+            process.env.REACT_APP_BACKEND_URL + `/api/v1/user/login`,
             {
                 username: username, 
                 password: password

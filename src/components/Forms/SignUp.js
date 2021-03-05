@@ -46,7 +46,7 @@ export default function SignUp() {
         setIsLoading(true)
 
         await axios.post(
-            `${process.env.REACT_APP_CAL_API_URL}` + `/api/v1/user/register`,
+            process.env.REACT_APP_BACKEND_URL + `/api/v1/user/register`,
             {
                 username: username, 
                 password: password,

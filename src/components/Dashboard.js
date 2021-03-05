@@ -17,7 +17,7 @@ import EditForm from './Forms/EditForm';
 import Schedule from './Schedule'
 
 import { findAll } from '../services/note.service';
-import { currentUser } from '../services/user.service'
+import { getCurrentUser } from '../services/user.service'
 
 
 const api = {
@@ -44,7 +44,7 @@ const Dashboard = () => {
     const [noteId, setNoteId] = useState(null)
 
     useEffect(() => {
-        currentUser()
+        getCurrentUser()
         .then(res => {
             let cityData = capitalize(res.data.data[0].city)
             console.log(cityData)

@@ -10,21 +10,23 @@ import {
 } from "@chakra-ui/core";  
 import { Spacer } from "@chakra-ui/react"
 
-import { logout, currentUser } from "../../services/user.service"
+import { logout, getCurrentUser } from "../../services/user.service"
 
 const Layout = props => {  
     const { colorMode, toggleColorMode } = useColorMode();
+    const [currentUser, setCurrentUser] = useState()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const history = useHistory()
 
     useEffect(() => {
-        currentUser()
+        getCurrentUser()
           .then(res => {
               if(res.data.status.code === 200) {
-                setIsLoggedIn(res.data.data)
+                setCurrentUser(res.data.data)
+                setIsLoggedIn(true)
               }
-              else setIsLoggedIn(false)
+              else setCurrentUser(undefined)
           }, err => {
             console.log(err)
           })
@@ -32,8 +34,15 @@ const Layout = props => {
 
     const loggingOut = () => {
       logout()
-      history.push('/')
-      window.location.reload()
+        .then(res => {
+            console.log(res.data.status.message)
+            setIsLoggedIn(false)
+            setTimeout(()=>{
+                history.push('/')
+            }, 1500)
+        }, err => {
+            console.log(err)
+        })
     }
 
     return (  
