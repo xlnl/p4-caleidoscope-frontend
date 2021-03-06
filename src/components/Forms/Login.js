@@ -37,8 +37,8 @@ export default function Login() {
             { withCredentials: true }
         ).then((data)=>{
             console.log(data)
-            setIsLoggedIn(true)
             if (data.data.status === 200){
+                setIsLoggedIn(true)
                 setTimeout(() => {
                     history.push("/home")
                     window.location.reload(false)
@@ -46,6 +46,7 @@ export default function Login() {
             }
         }).catch((err) => {
             setShowPassword(false)
+            console.log(err)
             setError('Invalid username or password');
             setUsername('')
             setPassword('')

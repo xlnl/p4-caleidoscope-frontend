@@ -6,7 +6,8 @@ import {
     Flex,  
     useColorMode,  
     IconButton, 
-    Button
+    Button,
+    Text
 } from "@chakra-ui/core";  
 import { Spacer } from "@chakra-ui/react"
 
@@ -91,6 +92,9 @@ const Layout = props => {
                             color="white"  
                         />  
                     </Box>  
+                    <Box>
+                        <Text>{currentUser.username}</Text> 
+                    </Box>
                     <Button 
                     bg="transparent"
                     onClick={loggingOut}

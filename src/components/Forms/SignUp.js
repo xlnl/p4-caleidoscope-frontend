@@ -58,15 +58,16 @@ export default function SignUp() {
             { withCredentials: true }
             ).then((data)=>{
                 console.log(data)
-                setIsLoggedIn(true)
-                setIsLoading(false)
                 if (data.data.status === 200){
+                    setIsLoggedIn(true)
+                    setIsLoading(false)
                     setTimeout(() => {
                         history.push("/home")
                         window.location.reload(false)
                     }, 2000)
                 }
             }).catch((err) => {
+            console.log(err)
             setShowPassword(false)
             setError('Invalid username or password');
             setIsLoading(false)
